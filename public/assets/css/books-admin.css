@@ -5,6 +5,16 @@ body{
     background: #ececec;
 }
 
+.message{
+    display: block;
+    background: var(--bg-color);
+    padding:1.5rem 1rem;
+    font-size: 2rem;
+    color:var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+ }
+ 
 .main {
     background-color: #fff;
 }
@@ -14,7 +24,7 @@ body{
     max-width: 1300px;
     overflow: auto;
     text-align: center;
-    position: relative; /* Ensure positioning for the sticky header */
+    /*position: relative; /* Ensure positioning for the sticky header */
 }
 
 .table-container thead th {
