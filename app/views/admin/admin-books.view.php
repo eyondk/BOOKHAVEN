@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
 <div class="wrapper">
 <?php include("../public/assets/html/admin-sidebar.html"); ?>
         <div class="main">
