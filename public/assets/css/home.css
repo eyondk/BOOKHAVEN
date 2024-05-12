@@ -30,7 +30,7 @@ body {
     margin-bottom: -5px;
 }
 
-.user-button {  
+.login-button {  
     position: absolute;
     top: 40px; 
     right: 30px;
@@ -40,20 +40,8 @@ body {
     font-size: 23px;
     font-weight: bold;
 }
-.admin-button {  
-    position: absolute;
-    top: 40px; 
-    right: 90px;
-    transform: translateX(-50%);
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 23px;
-    font-weight: bold;
-}
 
-.user-button:hover,
-.admin-button:hover
- {
+.login-button:hover {
     color: #e50914;
     text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
 }
