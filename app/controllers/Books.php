@@ -12,8 +12,8 @@ class Books extends Controller
         $message = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            if(isset($_GET['add_book'])){
+             /*INSERT BOOK*/ 
+            if(isset($_POST['add_book'])){
                 $title = $_POST['books_title'];
                 $genre = $_POST['books_genre'];
                 $year = $_POST['books_year'];
@@ -58,8 +58,10 @@ class Books extends Controller
                 
                     }
                 }
-
-            if(isset($_GET['update_book'])){
+            
+            /*UPDATE BOOK*/    
+            if(isset($_POST['update_book'])){
+                $id = $_POST['update_id'];
                 $title = $_POST['update_title'];
                 $genre = $_POST['update_genre'];
                 $year = $_POST['update_year'];
@@ -70,11 +72,6 @@ class Books extends Controller
                 $book_cover_folder = '../public/assets/uploaded_img/';
                 $book_cover_path = $book_cover_folder . $book_cover;
 
-
-
-                if (empty($title) || empty($genre) || empty($description) || empty($price) || empty($year) || empty($book_cover)) {
-                    $message[] = 'Please fill out all fields';
-                } else {
                     try {
                         
                         $update = "UPDATE books SET book_title = :title, book_genre = :genre, book_year = :year, book_description = :description, book_price = :price, book_image = :image WHERE book_id = :id";
@@ -93,15 +90,15 @@ class Books extends Controller
                         if ($stmt->execute()) {
                     
                             move_uploaded_file($book_cover_tmp_name, $book_cover_path);
-                            $message = 'New product added successfully';
+                            $message = 'Updated product successfully';
                         } else {
-                            $message = 'Failed to add the product';
+                            $message = 'Failed to update the product';
                         }
                     } catch (PDOException $e) {
-                        $message = 'Could not add the product: ' . $e->getMessage();
+                        $message = 'Could not update the product: ' . $e->getMessage();
                     }
 
-                
+                    
                     }
 
 
@@ -109,16 +106,33 @@ class Books extends Controller
 
             }
 
+            /*DELETE BOOK*/  
+            if(isset($_POST['delete_book'])){
+                $id = $_POST['delete_id'];
 
-        
-        
+                $stmt = $conn->prepare("DELETE FROM books WHERE book_id = :id");
+                $stmt->bindParam(':id', $id);
+                
+                if($stmt->execute()){
+                    $message = 'Book Deleted';
+                    header('location:Books');
+                }else{
+                    $message = 'Failed to delete book';
+                }
 
 
+                }
+                
+            
 
-        
+              
+            
+                
+            $this->view('books');
     }
-    $this->view('books');
-}
+
+    
+    
 }
 
-?>
+
