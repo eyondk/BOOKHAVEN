@@ -35,7 +35,12 @@
                         <h3>Login</h3>
                     </div>
                     
-                    <form>
+                    <form action="" enctype="multipart/form-data" method="post">
+                        <?php if (!empty($errors)):?>
+                            <div class="alert alert-dark">
+                                <?= implode("<br>", $errors) ?>
+                            </div>
+                        <?php endif;?>
                         <div class="input-group mb-3">
                             <div class="input-group-text bg-light"><i class="lni lni-envelope"></i></div>
                             <input type="email" id="email" name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email">
@@ -54,7 +59,8 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <a href="bookspage.html" class="btn btn-lg btn-dark w-100 fs-6" style="background-color: #e50914; border-color: transparent;">Login</a>
+                            <button type="submit" id="login" name="login" class="btn btn-lg btn-dark w-100 fs-6" style="background-color: #e50914; border-color: transparent;">Login</button>
+                            <!-- <a href="bookspage.html" class="btn btn-lg btn-dark w-100 fs-6" style="background-color: #e50914; border-color: transparent;">Login</a> -->
                         </div>
                         
                         

@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+body .profile {
+    margin-top: 200px;
+    
+    
+}
+
+
+.profile {
+    
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+  /*  border-radius: 10px;*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    background-color: #ca1011;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+ 
+}
+
+.profile-content {
+    display: flex;
+    padding: 20px;
+}
+
+.profile-picture {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+    flex: 2;
+}
+
+.profile-details h2 {
+    margin-top: 0;
+    margin-left: 25px;
+}
+
+.profile-details p {
+    margin: 5px 0;
+    margin-left: 25px;
+}
+
+.container {
+    position: relative;
+  }
+  
+  .btn-group {
+    position: absolute;
+    top: -5%;
+    left: 40.9%;
+    transform: translate(-50%, -50%);
+  }
+ 
+  .custom-btn {
+    background-color: #ca1011;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    position: relative; 
+    margin-top: -50px;
+    margin-left: -1px;
+    left: 22.3px;
+}
+  
+  .custom-btn:hover {
+    background-color: darkred;
+  }
+  
+  
+
+form {
+    width: 70%;
+    margin-left: 90px;
+    
+}
+
+/* .profile-picturedelete img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-detailsDelete {
+    margin-left: 25px;
+} */
+
+.btn-danger {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-danger:hover {
+    background-color: #bf0d0d; 
+}
+.btn-cancel {
+    background-color: #6c757d; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268; 
+    color: white;
+} 
+
+.modal-changePass-form,
+.modal-deleteAcc-form {
+    width: 100%;
+    margin-left: 0; 
+}
