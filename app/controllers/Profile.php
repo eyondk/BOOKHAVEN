@@ -41,9 +41,9 @@ class Profile extends Controller
                 if ($user->validate_change_pass($data, $user_id)) {
                     if ($user->change_pass($data, $user_id)) {
                         $data['message'] = "Password changed successfully!";
-                        redirect('profile');
+                        redirect('home');
                     } else {
-                        $data['error_message'] = $user->errors['message'];
+                        $data['error_message'] = 'An error occurred.';
                     }
                 } else {
                     $data['error_message'] = $user->errors;
@@ -52,7 +52,6 @@ class Profile extends Controller
         
         }
 
-        // show($data);
         $data['errors'] = $user->errors;
         $this->view('user/profile', $data);
     }

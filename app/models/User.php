@@ -67,28 +67,36 @@ class User extends Model
     public function validate_change_pass($data, $user_id) {
         $this->errors = [];
     
-        $data = array_merge(['c_pass' => '', 'n_pass' => '', 'cpass' => ''], $data);
+        $data = array_merge(['c_pass' => '', 'n_pass' => '', 'cpass' => '', 'email' => ''], $data);
     
         $conn = $this->openConnection();
-        $select = $conn->prepare("SELECT CUS_PASS FROM user WHERE CUS_ID = ?");
+        $select = $conn->prepare("SELECT CUS_EMAIL, CUS_PASS FROM user WHERE CUS_ID = ?");
         $select->execute([$user_id]);
         $user = $select->fetch(PDO::FETCH_ASSOC);
     
         $current_hashed_password = $user['CUS_PASS'];
         $c_password = md5($data['c_pass']);
+
+        $email = $user['CUS_EMAIL'];
     
         if (empty($data['c_pass']) || (empty($data['n_pass'])) || empty($data['cpass'])) {
-            $this->errors['c_pass'] = "All fields are required.";
-        } elseif ($c_password != $current_hashed_password) {
-            $this->errors['c_pass'] = "Current password is incorrect.";
+            $this->errors['validate_all'] = "All fields are required.";
+        } 
+        
+        if ($c_password != $current_hashed_password) {
+            $this->errors['validate_cpass'] = "Current password is incorrect.";
         }
     
         if (strlen($data['n_pass']) < 8) {
-            $this->errors['n_pass'] = "New password must be at least 8 characters long.";
+            $this->errors['validate_npass'] = "New password must be at least 8 characters long.";
         }
     
         if ($data['n_pass'] !== $data['cpass']) {
-            $this->errors['cpass'] = "New password and confirmation password do not match.";
+            $this->errors['validate_c_pass'] = "New password and confirmation password do not match.";
+        }
+
+        if($data['email'] != $email) {
+            $this->errors['email'] = "Email is incorrect.";
         }
     
         if (empty($this->errors)) {

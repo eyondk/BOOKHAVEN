@@ -118,14 +118,15 @@ class Model extends Database{
         $user = new User;
         $conn = $this->openConnection();
 
-        $password = md5($data['c_pass']);
+        $password = md5($data['n_pass']);
 
         if ($user->validate_change_pass($data, $user_id)) {
-            if(isset($_POST['confirm_changepass'])) {
+            if(isset($_POST['changepass'])) {
                 try {
-                    $update = "UPDATE user SET CUS_PASS = : ? WHERE CUS_ID = : ?";
+                    $update = "UPDATE user SET CUS_PASS = :n_pass WHERE CUS_ID = :user_id";
                     $stmt = $conn->prepare($update);
-                    $stmt->bindParam(':c_pass', $password);
+                    $stmt->bindParam(':n_pass', $password);
+                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
                     if ($stmt->execute()) {
                         if ($stmt->rowCount() > 0) {
