@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/admin-payment.css">
+    <title>Pending</title>
+</head>
+<body>
+<main class="content px-3 py-4">
+    <div class="container-fluid">
+        <div class="mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="fw-bold fs-4 my-3">Pending</h3>
+                </div>
+
+                <div class="col-md-4 fs-4 my-3 d-flex justify-content-md-end">
+                    <form action="#">
+                        <div class="input-group input-group-searchbar">
+                            <input type="text" class="form-control border-0 rounded-0" placeholder="Search...">
+                            <button class="btn btn-dark border-0 round-0" type="button">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                <div class="table-container rounded">
+                    <table class="table table-dark">
+                    <thead>
+                            <tr class="highlight">
+                                <th scope="col">Payment ID</th>
+                                <th scope="col">Customer ID</th>
+                                <th scope="col">Transaction ID</th>
+                                <th scope="col">Amount to be paid</th>
+                                <th scope="col">Amount tendered</th>
+                            </tr>
+                    </thead>
+        
+                        <tbody>
+                            <tr>
+                                <th scope="row">1001</th>
+                                <th scope="row">1101</th>
+                                <th scope="row">3001</th>
+                                <td>P520.25</td>
+                                <td>P620.55</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="col-md-12 fs-4 my-3 d-flex justify-content-md-end">
+                <button type="button" class="btn btn-dark button-add" data-bs-toggle="modal" data-bs-target="#modal-pay">Add Payment</button>
+
+                <div class="modal fade" id="modal-pay" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="modal-title">Add Payment</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+                               
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-lg fs-6" id="transaction_id" placeholder="Enter Transaction ID">
+                                        <button type="button" class="btn btn-dark" id="search_id">Search</button>
+                                    </div>
+                                
+                                    <div class="mb-3 transaction-details" style="display: none;">
+                                        <p class="fs-6">Title: <span id="title" class="fs-6"></span></p>
+                                        <p class="fs-6">Genre: <span id="genre"></span></p>
+                                        <p class="fs-6">Year Published: <span id="year_published"></span></p>
+                                        <p class="fs-6">Customer ID: <span id="customer_id"></span></p>
+                                        <p class="fs-6">Pick-up Date: <span id="pickup_date"></span></p>
+                                        <p class="fs-6">Return Date: <span id="return_date"></span></p>
+                                        <p class="fs-6">Price: <span id="price"></span></p>
+                                        <p class="fs-6">Total: <span id="total"></span></p>
+                                        <div class="mb-3">
+                                            <p class="fs-6 me-3">Amount tendered: <input type="number" class="form-control form-control-lg fs-6" id="amount"></p>
+                                            <button type="button" class="btn btn-dark ms-3" id="enter_button">Enter</button>
+                                        </div>
+                                        <p class="fs-6">Change: <span id="change"></span></p>
+                                    </div>
+                               
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-dark">Add Payment</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="<?=ROOT?>/assets/js/admin-payment.js"></script>
+</body>
+</html>
