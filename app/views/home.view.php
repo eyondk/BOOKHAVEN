@@ -21,7 +21,7 @@
                 <div class="container">
                     <?php if (!empty($search_results)): ?>
                         <?php foreach ($search_results as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
+                            <a href="<?=ROOT?>/bookrent?id=<?= htmlspecialchars($book['b_id']) ?>" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
                                 <img class="card-img" src="<?= htmlspecialchars($book['b_book_cover']) ?>" alt="<?= htmlspecialchars($book['b_title']) ?>">
                             </a>
                         <?php endforeach; ?>
@@ -42,7 +42,7 @@
                 <div class="container">
                     <?php if ($fantasy_books): ?>
                         <?php foreach ($fantasy_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
+                            <a href="<?=ROOT?>/bookrent?id=<?= htmlspecialchars($book['b_id']) ?>" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
                                 <img class="card-img" src="<?= htmlspecialchars($book['b_book_cover']) ?>" alt="<?= htmlspecialchars($book['b_title']) ?>">
                             </a>
                         <?php endforeach; ?>
@@ -62,7 +62,7 @@
                 <div class="container">
                     <?php if ($mystery_books): ?>
                         <?php foreach ($mystery_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
+                            <a href="<?=ROOT?>/bookrent?id=<?= htmlspecialchars($book['b_id']) ?>" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
                                 <img class="card-img" src="<?= htmlspecialchars($book['b_book_cover']) ?>" alt="<?= htmlspecialchars($book['b_title']) ?>">
                             </a>
                         <?php endforeach; ?>
@@ -82,7 +82,7 @@
                 <div class="container">
                     <?php if ($manga_books): ?>
                         <?php foreach ($manga_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
+                            <a href="<?=ROOT?>/bookrent?id=<?= htmlspecialchars($book['b_id']) ?>" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
                                 <img class="card-img" src="<?= htmlspecialchars($book['b_book_cover']) ?>" alt="<?= htmlspecialchars($book['b_title']) ?>">
                             </a>
                         <?php endforeach; ?>

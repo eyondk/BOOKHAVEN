@@ -22,7 +22,7 @@
   </div> -->
   <!-- Search Form -->
   <div class="search-box">
-        <form action="<?= ROOT ?>/home/index" method="POST">
+        <form action="<?= ROOT ?>/home" method="POST">
             <input type="text" name="search" placeholder="Search for books..." required>
             <button type="submit">Search</button>
         </form>
@@ -44,7 +44,7 @@
   <button class="custom-openbtn" onclick="openCustomNav()"><i class="fa-solid fa-bars icon"></i></button>
 
   <div class="d-flex justify-content-start logo"> 
-    <a href=""><img src="<?=ROOT?>/assets/images/bhaven.png" alt="Logo"></a>
+    <a href="<?=ROOT?>/home"><img src="<?=ROOT?>/assets/images/bhaven.png" alt="Logo"></a>
   </div>
 </nav>
 

@@ -10,7 +10,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
     define('DB_PASSWORD', '');
     //define('DBDRIVER', ''); /** incase u want to switch db like postgre**/
 
-    define('ROOT', 'http://localhost/bkhvn/public');
+    define('ROOT', 'http://localhost/bkhvncpy/public');
 }
 else
 {

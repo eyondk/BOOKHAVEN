@@ -22,6 +22,7 @@ class Home extends Controller
         if (!empty($keyword)) {
             $search_results = $book->search_books($keyword);
             $is_search = true;
+            
         }
     }
 
