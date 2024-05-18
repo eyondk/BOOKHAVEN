@@ -47,10 +47,10 @@ class Model extends Database{
 
                 if($select->rowCount() > 0) {
                     $_SESSION['user']= $row['CUS_ID'];
-                    redirect('profile');
-            } else {
-                $this->errors['message'] = "Incorrect email or password.";
-            }
+                    redirect('userhome');
+                } else {
+                    $this->errors['message'] = "Incorrect email or password.";
+                }
             } catch (PDOException $e) {
                 $this->errors['message'] = "Could not login." . $e->getMessage();
             }

@@ -2,16 +2,16 @@
 
 class User extends Model
 {
-    // protected $table = 'user';
+    protected $table = 'user';
 
-    // protected $allowedColumns = [
-    //     'CUS_FNAME',
-    //     'CUS_LNAME',
-    //     'CUS_ADDRESS',
-    //     'CUS_CONTACT_NUM',
-    //     'CUS_EMAIL',
-    //     'CUS_PASS'
-    // ];
+    protected $allowedColumns = [
+        'CUS_FNAME',
+        'CUS_LNAME',
+        'CUS_ADDRESS',
+        'CUS_CONTACT_NUM',
+        'CUS_EMAIL',
+        'CUS_PASS'
+    ];
 
     public function validate_signup($data) {
         $this->errors = [];
@@ -51,7 +51,7 @@ class User extends Model
         }
 
         $conn = $this->openConnection();
-        $select = $conn->prepare("SELECT * FROM user WHERE CUS_EMAIL = ?");
+        $select = $conn->prepare("SELECT * FROM {$this->table} WHERE CUS_EMAIL = ?");
         $select->execute([$data['email']]);
         if ($select->rowCount() > 0) {
             $this->errors['email'] = 'User email already exists!';
@@ -70,7 +70,7 @@ class User extends Model
         $data = array_merge(['c_pass' => '', 'n_pass' => '', 'cpass' => '', 'email' => ''], $data);
     
         $conn = $this->openConnection();
-        $select = $conn->prepare("SELECT CUS_EMAIL, CUS_PASS FROM user WHERE CUS_ID = ?");
+        $select = $conn->prepare("SELECT CUS_EMAIL, CUS_PASS FROM {$this->table} WHERE CUS_ID = ?");
         $select->execute([$user_id]);
         $user = $select->fetch(PDO::FETCH_ASSOC);
     
@@ -113,7 +113,7 @@ class User extends Model
     public function getUserById($user_id) {
         $conn = $this->openConnection();
 
-        $select = $conn->prepare("SELECT * FROM user WHERE CUS_ID = ?");
+        $select = $conn->prepare("SELECT * FROM {$this->table} WHERE CUS_ID = ?");
         $select->execute([$user_id]);
         $userData = $select->fetch(PDO::FETCH_ASSOC);
 
