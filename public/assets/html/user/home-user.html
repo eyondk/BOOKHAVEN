@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/home-user.css">
 </head>
 <body>
-
-
-
     <?php if ($is_search): ?>
         <!-- Search Results Section -->
         <section class="cat1">
@@ -19,8 +16,8 @@
                 <div class="container">
                     <?php if (!empty($search_results)): ?>
                         <?php foreach ($search_results as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['b_id']) ?>">
-                                <img class="card-img" src="<?= htmlspecialchars($book['b_book_cover']) ?>" alt="<?= htmlspecialchars($book['b_title']) ?>">
+                            <a href="<?=ROOT?>/bookdetails?id=<?= htmlspecialchars($book['B_ID']) ?>" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
+                                <img class="search-img" src="<?=ROOT?>/assets/images/bookcover/<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
                             </a>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -40,8 +37,8 @@
                 <div class="container">
                     <?php if ($fantasy_books): ?>
                         <?php foreach ($fantasy_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
-                                <img class="card-img" src="<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
+                            <a href="<?=ROOT?>/bookdetails?id=<?= htmlspecialchars($book['B_ID']) ?>" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
+                                <img class="card-img" src="<?=ROOT?>/assets/images/bookcover/<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
                             </a>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -60,8 +57,8 @@
                 <div class="container">
                     <?php if ($mystery_books): ?>
                         <?php foreach ($mystery_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
-                                <img class="card-img" src="<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
+                            <a href="<?=ROOT?>/bookdetails?id=<?= htmlspecialchars($book['B_ID']) ?>" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
+                                <img class="card-img" src="<?=ROOT?>/assets/images/bookcover/<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
                             </a>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -80,8 +77,8 @@
                 <div class="container">
                     <?php if ($manga_books): ?>
                         <?php foreach ($manga_books as $book): ?>
-                            <a href="#" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
-                                <img class="card-img" src="<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
+                            <a href="<?=ROOT?>/bookdetails?id=<?= htmlspecialchars($book['B_ID']) ?>" class="card" data-id="<?= htmlspecialchars($book['B_ID']) ?>">
+                                <img class="card-img" src="<?=ROOT?>/assets/images/bookcover/<?= htmlspecialchars($book['B_COVER']) ?>" alt="<?= htmlspecialchars($book['B_TITLE']) ?>">
                             </a>
                         <?php endforeach; ?>
                     <?php else: ?>

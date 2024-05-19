@@ -37,12 +37,29 @@ class Book extends Model
     }
 
     public function search_books($keyword)
-    {   $conn = $this->openConnection();
+    {   
+        $conn = $this->openConnection();
         $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE B_TITLE LIKE :keyword");
         $stmt->execute(['keyword' => '%' . $keyword . '%']);
         $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $books;
-    }
+    }   
 
-          
+    public function getBookById($book_id) 
+    {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE B_ID = :book_id");
+        $stmt->bindParam(':book_id', $book_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $bookData = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $bookData;
+    }
+    
+    public function get_books() {
+        $conn = $this->openConnection();
+        $stmt = $conn->prepare("SELECT * FROM book");
+        $stmt->execute();
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $books;
+    }
 }

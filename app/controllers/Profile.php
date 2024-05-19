@@ -9,11 +9,11 @@ class Profile extends Controller
         $user_id = $_SESSION['user'] ?? null;
         $userData = $user_id ? $this->getUserData($user_id) : null;
         
-        $data['user_fname'] = $userData ? $userData['CUS_FNAME'] : 'User';
-        $data['user_lname'] = $userData ? $userData['CUS_LNAME'] : 'User';
-        $data['user_email'] = $userData ? $userData['CUS_EMAIL'] : 'User';
-        $data['user_address'] = $userData ? $userData['CUS_ADDRESS'] : 'User';
-        $data['user_contact_num'] = $userData ? $userData['CUS_CONTACT_NUM'] : 'User';
+        $data['user_fname'] = $userData ? $userData['CUS_FNAME'] : 'User Fname';
+        $data['user_lname'] = $userData ? $userData['CUS_LNAME'] : 'User Lname';
+        $data['user_email'] = $userData ? $userData['CUS_EMAIL'] : 'User Email';
+        $data['user_address'] = $userData ? $userData['CUS_ADDRESS'] : 'User Address';
+        $data['user_contact_num'] = $userData ? $userData['CUS_CONTACT_NUM'] : 'User Contact Num';
         $data['user_id'] = $user_id;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

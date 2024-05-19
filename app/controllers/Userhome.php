@@ -8,7 +8,6 @@ class Userhome extends Controller
 
 {  
    
-
     public function index()
     {   
 
@@ -36,6 +35,9 @@ class Userhome extends Controller
         $manga_books = [];
     }
 
+    // echo "<pre>";
+    // print_r($fantasy_books);
+    // echo "</pre>";
     // Pass the data to the view
     $this->view('/user/homeuser', [
         'fantasy_books' => $fantasy_books,

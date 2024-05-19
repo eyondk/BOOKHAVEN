@@ -63,7 +63,7 @@ background-color: transparent;
 color: white;
 border: none;
 position: fixed;
-top: 20px;
+top: 10px;
 right: 20px;
 border-radius: 50%;
 font-weight: bold;
@@ -122,7 +122,7 @@ cursor: pointer;
 background-color: transparent;
 color: white;
 border: none;
-top: 20px;
+top: 10px;
 position: fixed; 
 left: 15px;
 z-index: 2;
@@ -137,7 +137,7 @@ z-index: 2;
 .logo{
     position: absolute; 
     z-index: 0; 
-    top: 25px; 
+    top: 15px; 
     left: 55px;
 }
 
@@ -171,6 +171,14 @@ z-index: 2;
     border-radius: 6px;
     background-color: #fff;
     padding: 0 15px 0 45px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 60%;
 }
 
 @media screen and (max-width: 1291px) {

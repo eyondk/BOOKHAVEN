@@ -57,8 +57,7 @@ class Model extends Database{
         }
     }
 
-    public function edit_user_info($data)
-    {
+    public function edit_user_info($data) {
         $conn = $this->openConnection();
 
         if(isset($_POST['edit'])) {
@@ -145,5 +144,58 @@ class Model extends Database{
         }
 
         return false;
+    }
+
+    public function insert_rent ($data) {
+        $conn = $this->openConnection();
+        $rent = new Rent;
+
+        if ($rent->validate_rent($data)) {
+            try {
+                $insert = "INSERT INTO rent (R_PICKUP_DATE, R_RETURN_DATE, R_TOTAL, R_BOOK_ID, R_CUS_ID) VALUES (:pickupdate, :returndate, :total, :book_id, :user_id)";
+                $stmt = $conn->prepare($insert);
+
+                $stmt->bindParam(':pickupdate', $data['pickup-date']);
+                $stmt->bindParam(':returndate', $data['return-date']);
+                $stmt->bindParam(':total', $data['total']);
+                $stmt->bindParam(':book_id', $data['book_id'], PDO::PARAM_INT);
+                $stmt->bindParam(':user_id', $data['user_id'], PDO::PARAM_INT);
+
+                if ($stmt->execute()) {
+                    $this->errors['message'] = "Wait for Approval";
+                } else {
+                    $this->errors['message'] = "Failed to submit reservation.";
+                }
+            } catch (PDOException $e) {
+                $this->errors['message'] = "Couldn't reserve. " . $e->getMessage();
+            }
+        }
+    }
+
+    public function cancel_res ($data) {
+        $conn = $this->openConnection();
+        // show($data);
+
+        try {
+            $update = "UPDATE rent SET R_STATUS = 'CANCELLED' WHERE R_ID = :r_id";
+            $stmt = $conn->prepare($update);
+            $stmt->bindParam(':r_id', $_POST['r_id'], PDO::PARAM_INT);
+            
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() > 0) {
+                    $this->errors['message'] = "Cancelled successfully.";
+                    return true;
+                } else {
+                    $this->errors['message'] = "Failed to cancel.";
+                }
+            } else {
+                $this->errors['message'] = "Error updating record." . $stmt->errorInfo()[2];
+            }
+        } catch (PDOException $e) {
+            $this->errors['message'] = "Could not update information." . $e->getMessage();
+        }
+
+        return false;
+        // return "Reservation canceled successfully.";
     }
 }

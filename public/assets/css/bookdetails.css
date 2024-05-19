@@ -1,0 +1,143 @@
+.rent{
+    display: flex;
+    flex-direction: row;
+    padding-top: 8rem;
+    padding-right: 3rem;
+    padding-left: 3rem;     
+    position: relative; 
+
+}
+
+
+.book-info-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.book-details-container {
+    overflow: hidden;
+    padding-left: 3rem;
+    
+}
+
+.button-container{
+    display: flex;  
+    flex-direction: column; 
+    text-align: center;
+    width: 100%;
+}
+
+
+.book-cover {
+    width: 300px;
+    height: 450px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.bookinfo {
+    padding-bottom: 20px;
+}
+
+
+.book-title {
+    font-size: 35px;
+    color: white;
+    font-weight: bold; 
+}
+
+.book-author {
+    font-style: italic;
+    color: #666;
+}
+
+.genre {
+    font-size: 16px;
+    color: #666;
+    margin-top: -10px;
+}
+
+.book-description {
+    margin-top: -10px;
+}
+
+/* .gradient {
+    -webkit-mask-image: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.284) 98%);
+    mask-image: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.284) 98%);
+} */
+
+/* button starts*/
+.button {
+    background-color: white;
+    color: #cc0000;
+    border: 2px solid #cc0000;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 25px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button.clicked {
+    background-color: #28a745; 
+    border: 2px solid transparent;
+    color: white;
+}
+
+.button:hover {
+    background-color: #ff0008;
+    color: black;
+}
+
+.rent-now {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #fff; 
+    cursor: pointer;
+    background-color: #cb040b;
+}
+
+.rent-now.clicked {
+    background-color: #28a745;
+}
+
+.readmore-btn, .readless-btn{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.readmore-btn:hover, .readless-btn:hover{
+    text-decoration: underline;
+}
+
+
+/* button ends */
+
+@media screen and (max-width: 768px) {
+
+    .rent{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+    }
+
+    .book-details-container {
+        overflow: hidden;
+        padding-top: 1rem;
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 2rem;
+    }
+
+
+}
