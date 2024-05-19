@@ -15,48 +15,47 @@ $(document).ready(function() {
         $("#amount").val("");
         $("#change").text("");
 
-        // Reset display
+
         $(".transaction-details").hide();
         $("#transaction_id").show();
         $("#search_id").show();
     }
 
-    // Event listener for the modal show event
     $('#modal-pay').on('show.bs.modal', function() {
-        // Reset the modal content when the modal is shown
+ 
         resetModal();
     });
 
     $('#search_id').on('click', function() {
-        // Get the entered transaction ID
+       
         var transactionId = $("#transaction_id").val();
-        alert(transactionId);
         $.ajax({
-            url: '../app/Models/payment.php', 
+            url: '../app/Models/payments.php',  
             type: 'POST',
-            data: { transaction_id: transactionId },
+            data: { transaction_id: transactionId, action: 'getPayment' },
             dataType: 'json',
             success: function(data) {
-               
+                    
                     
                     $("#title").text(data.book_title);
                     $("#genre").text(data.book_genre);
                     $("#year_published").text(data.book_year);
-                    $("#customer_id").text(data.book_id);
-                    // $("#pickup_date").text(response.pickup_date);
-                    // $("#return_date").text(response.return_date);
-                    // $("#price").text("P" + parseFloat(response.price).toFixed(2));
-                    // $("#total").text("P" + parseFloat(response.total).toFixed(2));
+                  ;
+                    $("#cus_id").text(data.cus_id);
+                    $("#pickup_date").text(data.r_pickup_date);
+                    $("#return_date").text(data.r_return_date);
+                    $("#price").text("P" + parseFloat(data.book_price).toFixed(2));
+                    $("#total").text("P" + parseFloat(data.r_total).toFixed(2));
 
                     
                     $(".transaction-details").show();
 
-                    // Hide search input and button
+                  
                     $("#transaction_id").hide();
                     $("#search_id").hide();
                 },
             error: function(xhr, status, error) {
-                    alert("An error occurred: " + xhr.responseText);
+                    console.log("An error occurred: " + xhr.responseText);
                 }
             
             
@@ -65,41 +64,68 @@ $(document).ready(function() {
     });
 
     $('#enter_button').on('click', function() {
-        // Get the amount tendered
+    
         var amountTendered = parseFloat($("#amount").val());
 
-        // Check if amount tendered is empty or not a number
+
         if (isNaN(amountTendered) || amountTendered <= 0) {
             alert("Please enter a valid amount.");
-            return; // Exit the function if amount is not valid
+            return; 
         }
 
-        // Calculate change
+
         var total = parseFloat($("#total").text().substring(1));
 
-        // Check if amount tendered is enough
+
         if (amountTendered < total) {
             alert("Amount tendered is not enough.");
-            return; // Exit the function if amount is not enough
+            return; 
         }
 
         var change = amountTendered - total;
 
-        // Display change
+
         $("#change").text("P" + change.toFixed(2));
     });
 
-    // Event listener for the "Add Payment" button
-    $("#modal-pay .modal-footer .btn-dark").on('click', function() {
-        // Perform any actions needed here
+ 
+    $("#addPay").on('click', function() {
+        
 
-        // Reset modal content
-        resetModal();
+        var transactionId = $("#transaction_id").val();
+        var customerId = $("#cus_id").text();
+        var amountTendered = $("#amount").val();
+        var amountToBePaid = parseFloat($("#total").text().substring(1));
+        $.ajax({
+            url: '../app/models/payments.php',
+            type: 'POST',
+            data: { 
+                transaction_id: transactionId, 
+                customer_id: customerId,
+                amount_tendered: amountTendered, 
+                amount_to_be_paid: amountToBePaid,
+                action: 'addPayment'
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert("SUCCUES");
+                    
+                } else {
+                     alert("Error: " + response.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("An error occurred: " + xhr.responseText);
+            }
+        });
+
+
     });
 
-    // Event listener for the modal close event
+
     $('#modal-pay').on('hidden.bs.modal', function() {
-        // Reset modal content when the modal is closed
+
         resetModal();
     });
 });

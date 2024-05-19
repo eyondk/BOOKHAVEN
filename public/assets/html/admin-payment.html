@@ -38,17 +38,22 @@
                                 <th scope="col">Transaction ID</th>
                                 <th scope="col">Amount to be paid</th>
                                 <th scope="col">Amount tendered</th>
+                                <th scope="col">Status</th>
                             </tr>
                     </thead>
         
                         <tbody>
+                            <?php foreach ($paid as $paids): ?>
                             <tr>
-                                <th scope="row">1001</th>
-                                <th scope="row">1101</th>
-                                <th scope="row">3001</th>
-                                <td>P520.25</td>
-                                <td>P620.55</td>
+                                <td scope="row"><?php echo htmlspecialchars($paids['p_id']); ?></td>
+                                <td scope="row"><?php echo htmlspecialchars($paids['r_id']); ?></td>
+                                <td><?php echo htmlspecialchars($paids['cus_id']); ?></td>
+                                <td><?php echo htmlspecialchars($paids['p_total']); ?></td>
+                                <td><?php echo htmlspecialchars($paids['p_amount']); ?></td>
+                                <td><?php echo htmlspecialchars($paids['s_name']); ?></td>
+                                
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -79,7 +84,8 @@
                                         <p class="fs-6">Title: <span id="title" class="fs-6"></span></p>
                                         <p class="fs-6">Genre: <span id="genre"></span></p>
                                         <p class="fs-6">Year Published: <span id="year_published"></span></p>
-                                        <p class="fs-6">Customer ID: <span id="customer_id"></span></p>
+                                      
+                                        <p class="fs-6">Customer ID: <span id="cus_id"></span></p>
                                         <p class="fs-6">Pick-up Date: <span id="pickup_date"></span></p>
                                         <p class="fs-6">Return Date: <span id="return_date"></span></p>
                                         <p class="fs-6">Price: <span id="price"></span></p>
@@ -95,7 +101,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-dark">Add Payment</button>
+                                <button type="submit" class="btn btn-dark" id="addPay">Add Payment</button>
                             </div>
                         </form>
                         </div>

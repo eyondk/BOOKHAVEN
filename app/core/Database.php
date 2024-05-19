@@ -15,10 +15,9 @@ class Database
             $this->conn = new PDO(
                 "pgsql:host={$this->host};dbname={$this->dbname}",
                 $this->user,
-                $this->password,
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                $this->password
             );
-            
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();

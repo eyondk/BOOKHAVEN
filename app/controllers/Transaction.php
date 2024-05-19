@@ -7,9 +7,11 @@ class Transaction extends Controller
     {
         
         
+        $rent = new Rent();
+        $rentals = $rent->getApproveRentals();
+        $data['rentals'] = $rentals;
         
-        
-        $this->view('transaction');
+        $this->view('transaction', $data);
     }
 
 }
