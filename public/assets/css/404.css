@@ -1,0 +1,53 @@
+body{
+    background-color: black;
+    position: relative;
+
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.er{
+    display: flex;
+    flex-direction: column;
+}
+
+.error{
+    width: 700px;
+    height: 600px;
+    align-self: center;
+}
+
+.btn{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+    color: #fff; 
+    margin-top: -2rem;
+    padding: 1rem 1rem;
+    width: 200px;
+    align-self: center;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #cb040b;
+}
+
+.btn:hover {
+    background-color: #ff0008;
+    color: black;
+    font-weight: 550;
+
+}
+
+
+@media screen and (max-width:480px) {
+    
+    .error{
+        margin-top: 7rem;
+        width: 360px;
+        height: 400px;
+        align-self: center;
+    }
+}

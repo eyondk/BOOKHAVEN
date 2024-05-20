@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
 
 <div class="wrapper">
         <div class="main">
-            <?php include("../public/assets/html/view404.html"); ?>
+            <?php include("../public/assets/html/controller404.html"); ?>
         </div>
     </div> 
 
