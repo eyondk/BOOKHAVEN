@@ -4,6 +4,11 @@ class Model extends Database{
 
     public $errors = [];
 
+    // public function __construct() {
+        
+    //     $this->conn = $this->openConnection();
+    // }
+
     public function insert_user ($data) {
         $conn = $this->openConnection();
         $user = new User;
@@ -46,8 +51,12 @@ class Model extends Database{
                 $row = $select->fetch(PDO::FETCH_ASSOC);
 
                 if($select->rowCount() > 0) {
-                    $_SESSION['user']= $row['CUS_ID'];
-                    redirect('userhome');
+                    if ($row['CUS_EMAIL'] == 'testadmin@gmail.com' && $row['CUS_PASS'] == $password) {
+                        redirect('books');
+                    } else {
+                        $_SESSION['user']= $row['CUS_ID'];
+                        redirect('userhome');
+                    }
                 } else {
                     $this->errors['message'] = "Incorrect email or password.";
                 }
@@ -198,4 +207,160 @@ class Model extends Database{
         return false;
         // return "Reservation canceled successfully.";
     }
+
+    // ----------------------------------------------------------------------------
+
+    public function transactQuery($transactionId) {
+        $conn = $this->openConnection();
+        
+        $sql = "SELECT * FROM rent r 
+        JOIN book b on r.R_BOOK_ID = b.B_ID 
+        JOIN user c on r.R_CUS_ID = c.CUS_ID 
+        WHERE R_ID = :transaction_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':transaction_id', $transactionId);
+        $stmt->execute();
+        $transactionDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($transactionDetails) {
+            return $transactionDetails;
+        } else {
+           
+            return null;
+        }
+    }
+
+
+public function getPendingRentals() {
+    $conn = $this->openConnection();
+
+    $sql = "SELECT r.*, b.B_TITLE, b.B_GENRE, b.B_YR_PUB, b.B_PRICE, c.CUS_FNAME, c.CUS_LNAME,  c.CUS_EMAIL, r.R_STATUS
+            FROM rent r
+            -- JOIN status s ON r.s_id = s.s_id    
+            JOIN book b ON r.R_BOOK_ID = b.B_ID
+            JOIN user c ON r.R_CUS_ID = c.CUS_ID
+            WHERE UPPER(r.R_STATUS) = 'TO BE APPROVE'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function getApproveRentals() {
+    $conn = $this->openConnection();
+
+    $sql = "SELECT r.*, b.B_TITLE, b.B_GENRE, b.B_YR_PUB, b.B_PRICE, c.CUS_FNAME, c.CUS_LNAME,  c.CUS_EMAIL, r.R_STATUS
+            FROM rent r
+            -- JOIN status s ON r.s_id = s.s_id    
+            JOIN book b ON r.R_BOOK_ID = b.B_ID
+            JOIN user c ON r.R_CUS_ID = c.CUS_ID
+            WHERE UPPER(r.R_STATUS) = 'APPROVED'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function getReturnedRentals() {
+    $conn = $this->openConnection();
+    
+    $sql = "SELECT r.*, b.B_TITLE, b.B_GENRE, b.B_YR_PUB, b.B_PRICE, c.CUS_FNAME, c.CUS_LNAME,  c.CUS_EMAIL, r.R_STATUS
+    FROM rent r
+    -- JOIN status s ON r.s_id = s.s_id    
+    JOIN book b ON r.R_BOOK_ID = b.B_ID
+    JOIN user c ON r.R_CUS_ID = c.CUS_ID
+    WHERE UPPER(r.R_STATUS) = 'RETURNED'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function getCancelledRentals() {
+    $conn = $this->openConnection();
+    
+    $sql = "SELECT r.*, b.B_TITLE, b.B_GENRE, b.B_YR_PUB, b.B_PRICE, c.CUS_FNAME, c.CUS_LNAME,  c.CUS_EMAIL, r.R_STATUS
+    FROM rent r
+    -- JOIN status s ON r.s_id = s.s_id    
+    JOIN book b ON r.R_BOOK_ID = b.B_ID
+    JOIN user c ON r.R_CUS_ID = c.CUS_ID
+    WHERE UPPER(r.R_STATUS) = 'CANCELLED'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function getPaidsRentals() {
+    $conn = $this->openConnection();
+    
+    $sql = "SELECT r.*, b.B_TITLE, b.B_GENRE, b.B_YR_PUB, b.B_PRICE, c.CUS_FNAME, c.CUS_LNAME,  c.CUS_EMAIL, r.R_STATUS
+    FROM rent r
+    -- JOIN status s ON r.s_id = s.s_id    
+    JOIN book b ON r.R_BOOK_ID = b.B_ID
+    JOIN user c ON r.R_CUS_ID = c.CUS_ID
+    WHERE UPPER(r.R_STATUS) = 'PAID'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+public function updateRentalStatus($rentalId, $status)
+    {
+        $conn = $this->openConnection();
+
+        try {
+            $stmt = $conn->prepare("UPDATE rent SET R_STATUS = :status WHERE R_ID = :r_id");
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':r_id', $rentalId, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Update failed: " . $e->getMessage();
+            return false;
+        }
+    }
+
+
+public function addPayment($transactionId,$customerId, $amountTendered, $amountToBePaid){
+    $conn = $this->openConnection();
+
+    try {
+
+
+        $sql = "INSERT INTO payment (P_R_ID, P_CUS_ID, P_AMOUNT) VALUES (:transaction_id, :customer_id, :amount_tendered)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':transaction_id', $transactionId);
+        $stmt->bindParam(':customer_id', $customerId);
+        $stmt->bindParam(':amount_tendered', $amountTendered);
+        $stmt->execute();
+
+        $status = 'PAID';
+        $sqlUpdate = "UPDATE rent SET R_STATUS = :status WHERE R_ID = :transaction_id";
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+        $stmtUpdate->bindParam(':status', $status);
+        $stmtUpdate->bindParam(':transaction_id', $transactionId, PDO::PARAM_INT);
+        $stmtUpdate->execute();
+
+        return true;
+    } catch (PDOException $e) {
+      
+        return false;
+    }
+
+
+}
+
+public function getPaidRentals() {
+    $conn = $this->openConnection();
+    $sql = "SELECT *
+            FROM payment p
+            JOIN rent r  ON r.R_ID = p.P_R_ID
+            JOIN user u ON u.CUS_ID = p.P_CUS_ID";
+            
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
 }

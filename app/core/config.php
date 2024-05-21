@@ -9,6 +9,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
     // define('DBDRIVER', '');
 
     define('ROOT', 'http://localhost/bookhaven/public');
+    define('ROOT_DIR', realpath(dirname(__FILE__)));
     // define('ROOT', 'http://localhost/bookhaven/app');
 } else {
     define('DBNAME', 'bookhaven');
