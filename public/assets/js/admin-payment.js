@@ -27,7 +27,7 @@ $(document).ready(function() {
     });
 
     $('#search_id').on('click', function() {
-       alert('jaha');
+    //    alert('jaha');
         var transactionId = $("#transaction_id").val();
         alert(transactionId);
         $.ajax({
