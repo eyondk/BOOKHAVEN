@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
+}
+
+/* .main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: #fafbfe;
+} */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+.table-container {
+    max-height: 200px;
+    max-width: 1300px;
+    overflow: auto;
+    text-align: center;
+    position: relative; /* Ensure positioning for the sticky header */
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure header stays above content */
+}
+
+.table-content td {
+    word-wrap: break-word;
+}
+
+.button-add a {
+    text-decoration: none;
+}
+
+.button-i {
+    background-color: #12171f;
+}
+
+.btn.btn-dark {
+    border-color: transparent; 
+}
+
+.btn-dark i {
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+}
+
+.btn-dark .lni-pencil-alt {
+    color: #fff; 
+}
+
+
+.btn-dark .lni-trash-can {
+    color: red; 
+}
+
+.modal-dialog {
+    position: fixed;
+    top: 23.5%;
+    left: 35%;
+    right: 35%;
+    bottom: 25%;
+}
+
+@media (max-width: 768px) {
+    .modal.fade.show {
+        display: block !important;
+    }
+    .modal-dialog {
+        max-width: none !important;
+        width: 90% !important;
+        left: 48% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+    }
+}

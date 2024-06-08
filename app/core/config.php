@@ -2,22 +2,21 @@
 
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
-    define('DBNAME', 'bookhaven');
+    define('DBNAME', 'CHEAPTHRILLS');
     define('DBHOST', 'localhost');
-    define('DBUSER', 'root');
-    define('DBPASS', 'hannahmae615');
+    define('DBUSER', 'postgres');
+    define('DBPASS', 'hannahmae6154');
     // define('DBDRIVER', '');
 
-    define('ROOT', 'http://localhost/bookhaven/public');
-    define('ROOT_DIR', realpath(dirname(__FILE__)));
-    // define('ROOT', 'http://localhost/bookhaven/app');
+    define('ROOT', 'http://localhost/cheapthrills/public');
+    // define('ROOT', 'http://localhost/mvc/app');
 } else {
-    define('DBNAME', 'bookhaven');
-    define('DBNHOST', 'localhost');
-    define('DBUSER', 'root');
-    define('DBPASS', 'hannahmae615');
+    define('DBNAME', 'CHEAPTHRILLS');
+    define('DBHOST', 'localhost');
+    define('DBUSER', 'postgres');
+    define('DBPASS', 'hannahmae6154');
     // define('DBDRIVER', '');
 
-    define('ROOT', 'http://localhost/bookhaven/public');
+    define('ROOT', 'http://localhost/cheapthrills/public');
     define('ROOT', 'https://www.yourwebsite.com');
 }

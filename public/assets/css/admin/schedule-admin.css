@@ -1,0 +1,231 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
+    height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+  
+  input[type="date"]:not(.has-value):before{
+    content: attr(placeholder);
+  }
+  
+  .calendar {
+    height: max-content;
+    width: max-content;
+    background-color: #fdfdfd;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* transform: scale(1.25); */
+  }
+  
+  .calendar-header {
+    /* background: #9796f0; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .calendar-body {
+    padding: 10px;
+  }
+  
+  .calendar-week-day {
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+  }
+  
+  .calendar-week-day div {
+    display: grid;
+    place-items: center;
+    color: #c3c2c8;
+  }
+  
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: #151426;
+  }
+  
+  .calendar-days div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+    /* border-radius: 50%; */
+  }
+  
+  .calendar-days div span {
+    position: absolute;
+  }
+  
+  /* --------- */
+  .calendar-days div.curr-date,
+  .calendar-days div.curr-date:hover {
+    background-color:#141d26;
+    color: #fff;
+    border-radius: 50%;
+  }
+  /* --------- */
+  .calendar-days div.curr-date span {
+    display: none;
+  }
+  
+  .calendar-days div:hover {
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    background-color: #8da0b5;
+    border-radius: 20%;
+    color: black;
+  }
+  
+  .calendar-days div.empty-day:hover {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+  .month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .month-picker:hover {
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
+  }
+  
+  .year-picker {
+    display: flex;
+    align-items: center;
+  }
+  
+  .year-change {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .year-change:hover {
+    transition:all .2s ease-in-out ;
+    transform: scale(1.50);
+  }
+  
+  .month-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fdfdfd;
+    font-weight: bold;
+    padding: 20px;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    display: grid;
+    transform: scale(1.5);
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  .month-list.show {
+    transform: scale(1);
+    visibility: visible;
+    pointer-events: visible;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .month-list > div {
+    display: grid;
+    place-items: center;
+  }
+  
+  .month-list > div > div {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: #151426;
+  }
+  
+  .month-list > div > div:hover {
+    background-color: #8da0b5;
+  }
+  
+  .modal-dialog {
+    position: fixed;
+    top: 10%;
+    left: 35%;
+    right: 35%;
+    bottom: 25%;
+  }
+  
+  @media (max-width: 768px) {
+    .modal.fade.show {
+        display: block !important;
+    }
+    .modal-dialog {
+        max-width: none !important;
+        width: 80% !important;
+        left: 46% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+    }
+  }
+  
+  @keyframes to-top {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .box-area {
+        flex-direction: column;
+    }
+    .left-box,
+    .right-box {
+        width: 90%;
+    }
+    .right-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .left-box {
+      overflow-x: auto;
+    }
+  }

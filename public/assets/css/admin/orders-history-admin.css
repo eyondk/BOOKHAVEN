@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+.table-container {
+    max-height: 450px;
+    max-width: 1300px;
+    overflow: auto;
+    text-align: center;
+    position: relative; /* Ensure positioning for the sticky header */
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure header stays above content */
+}
+
+.table-content td {
+    word-wrap: break-word;
+}
